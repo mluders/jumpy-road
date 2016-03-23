@@ -3,4 +3,5 @@ Jumpy Road is a 3d clone of Crossy Road created in C++. It uses OpenGL 1.1 and G
 
 Disclaimer: Developing with OpenGL 1.1 is tedious and painful. Do not make the same mistake ;)
 
-#####Created by Miles Luders#####
+####Credits####
+Created by Miles Luders
