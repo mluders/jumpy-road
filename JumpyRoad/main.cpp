@@ -19,7 +19,7 @@
 using namespace std;
 
 vector<char> singleRow;
-vector<vector<char>> listOfRows;
+vector<vector<char> > listOfRows;
 
 float gameZ = -120;
 float gameX = 4;
@@ -81,11 +81,11 @@ Car::Car(float inputX, float inputZ, float inputSpeed, int inputDirection, int i
 void Car::Update() {
     
     /*cout << "My lane is: " << lane << endl;
-    cout << "Player lane is: " << playerRelativeToGridZ << endl;*/
+     cout << "Player lane is: " << playerRelativeToGridZ << endl;*/
     
     /*cout << "Player x is " << finalX << endl;
-    cout << "my x is " << x << endl;*/
-
+     cout << "my x is " << x << endl;*/
+    
     
     if (direction == 0) {
         x+=speed;
@@ -145,9 +145,9 @@ GLuint LoadBMP(const char *fileName)
     width		= *(int*)&(header[0x12]);
     height		= *(int*)&(header[0x16]);
     
-    if (size == NULL)
+    if (size == 0)
         size = width * height * 3;
-    if (dataPos == NULL)
+    if (dataPos == 0)
         dataPos = 54;
     
     data = new unsigned char[size];
@@ -208,7 +208,7 @@ void InitDraw() {
     //glEnable(GL_TEXTURE_2D);
     
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
+    
     
     textureGrass = LoadBMP("grass.bmp");
 }
@@ -318,8 +318,8 @@ void CreateCar(float x, float y, float z, int type, int direction) {
         facing = -1;
     
     switch(type) {
-        
-        //Small car
+            
+            //Small car
         case 0:
             // Body
             glPushMatrix();
@@ -392,8 +392,8 @@ void CreateCar(float x, float y, float z, int type, int direction) {
             glutSolidCube(3);
             glPopMatrix();
             break;
-        
-        // Medium car - orange
+            
+            // Medium car - orange
         case 1:
             // Body
             glPushMatrix();
@@ -466,8 +466,8 @@ void CreateCar(float x, float y, float z, int type, int direction) {
             glutSolidCube(3);
             glPopMatrix();
             break;
-        
-        // Medium car purple
+            
+            // Medium car purple
         case 2:
             // Body
             glPushMatrix();
@@ -541,7 +541,7 @@ void CreateCar(float x, float y, float z, int type, int direction) {
             glPopMatrix();
             break;
             
-        // Taxi
+            // Taxi
         case 3:
             // Body
             glPushMatrix();
@@ -621,8 +621,8 @@ void CreateCar(float x, float y, float z, int type, int direction) {
             glutSolidCube(3);
             glPopMatrix();
             break;
-           
-        // Medium car - green
+            
+            // Medium car - green
         case 4:
             // Body
             glPushMatrix();
@@ -848,41 +848,41 @@ void Update(void) {
     gluLookAt(0,70,40,0,0,0,0,1,0);
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    // Handle collisions
-    switch(listOfRows[playerRelativeToGridZ][playerRelativeToGridX])
-    {
-        case '3':
-            playerIsDead = true;
-            break;
-        case '5':
-            playerHasWon = true;
-        default:
-            break;
-    }
-    
-    if (playerIsDead == true) {
-        deathTimer += 5;
-    }
-    
-    if (deathTimer > 30) {
-        HandleDeath();
-    }
-    
-    if (playerHasWon == true) {
-        winTimer += 5;
-    }
-    
-    if (winTimer > 30) {
-        HandleWin();
-    }
-    
+    //
+    //    // Handle collisions
+    //    switch(listOfRows[playerRelativeToGridZ][playerRelativeToGridX])
+    //    {
+    //        case '3':
+    //            playerIsDead = true;
+    //            break;
+    //        case '5':
+    //            playerHasWon = true;
+    //        default:
+    //            break;
+    //    }
+    //
+    //    if (playerIsDead == true) {
+    //        deathTimer += 5;
+    //    }
+    //
+    //    if (deathTimer > 30) {
+    //        HandleDeath();
+    //    }
+    //
+    //    if (playerHasWon == true) {
+    //        winTimer += 5;
+    //    }
+    //
+    //    if (winTimer > 30) {
+    //        HandleWin();
+    //    }
+    //
     // Handle player movement
     if (canJump == false) {
         
         switch(playerDirection) {
                 
-            // Right
+                // Right
             case 0:
                 gameX -= 0.4;
                 
@@ -901,8 +901,8 @@ void Update(void) {
                     canJump = true;
                 }
                 break;
-             
-            // Up
+                
+                // Up
             case 1:
                 gameZ += 0.4;
                 
@@ -921,9 +921,9 @@ void Update(void) {
                     canJump = true;
                 }
                 break;
-            
                 
-            // Left
+                
+                // Left
             case 2:
                 gameX += 0.4;
                 
@@ -943,7 +943,7 @@ void Update(void) {
                 }
                 break;
                 
-            // Down
+                // Down
             case 3:
                 gameZ -= 0.4;
                 
@@ -974,7 +974,7 @@ void Update(void) {
             
             switch(listOfRows[i][j]) {
                     
-                // Grass
+                    // Grass
                 case '0':
                     glPushMatrix();
                     glColor3f(190.0/255.0, 245.0/255.0, 102.0/255.0);
@@ -982,16 +982,16 @@ void Update(void) {
                     glScalef(1, .15, 1);
                     glRotated(90, 1, 0, 0);
                     glBegin(GL_QUADS);
-                        glTexCoord2i(0, 0); glVertex2i(-2, -2);
-                        glTexCoord2i(0, 1); glVertex2i(-2, 2);
-                        glTexCoord2i(1, 1); glVertex2i(2, 2);
-                        glTexCoord2i(1, 0); glVertex2i(2, -2);
+                    glTexCoord2i(0, 0); glVertex2i(-2, -2);
+                    glTexCoord2i(0, 1); glVertex2i(-2, 2);
+                    glTexCoord2i(1, 1); glVertex2i(2, 2);
+                    glTexCoord2i(1, 0); glVertex2i(2, -2);
                     glEnd();
                     glPopMatrix();
                     break;
                     
                     
-                // Tree - large
+                    // Tree - large
                 case '1':
                     
                     glPushMatrix();
@@ -1000,10 +1000,10 @@ void Update(void) {
                     glScalef(1, .15, 1);
                     glRotated(90, 1, 0, 0);
                     glBegin(GL_QUADS);
-                        glTexCoord2i(0, 0); glVertex2i(-2, -2);
-                        glTexCoord2i(0, 1); glVertex2i(-2, 2);
-                        glTexCoord2i(1, 1); glVertex2i(2, 2);
-                        glTexCoord2i(1, 0); glVertex2i(2, -2);
+                    glTexCoord2i(0, 0); glVertex2i(-2, -2);
+                    glTexCoord2i(0, 1); glVertex2i(-2, 2);
+                    glTexCoord2i(1, 1); glVertex2i(2, 2);
+                    glTexCoord2i(1, 0); glVertex2i(2, -2);
                     glEnd();
                     glPopMatrix();
                     
@@ -1024,7 +1024,7 @@ void Update(void) {
                     break;
                     
                     
-                // Road
+                    // Road
                 case '2':
                     glPushMatrix();
                     glColor3f(82.0/255.0, 88.0/255.0, 102.0/255.0);
@@ -1040,8 +1040,8 @@ void Update(void) {
                     glutSolidCube(4);
                     glPopMatrix();
                     break;
-                
-                // Water
+                    
+                    // Water
                 case '3':
                     glPushMatrix();
                     glColor3f(128.0/255.0, 245.0/255.0, 255.0/255.0);
@@ -1051,8 +1051,8 @@ void Update(void) {
                     glPopMatrix();
                     
                     break;
-                
-                // Lilypad
+                    
+                    // Lilypad
                 case '4':
                     glPushMatrix();
                     glColor3f(128.0/255.0, 245.0/255.0, 255.0/255.0);
@@ -1079,7 +1079,7 @@ void Update(void) {
                     
                     break;
                     
-                // Flag
+                    // Flag
                 case '5':
                     glPushMatrix();
                     glColor3f(190.0/255.0, 245.0/255.0, 102.0/255.0);
@@ -1099,11 +1099,11 @@ void Update(void) {
                     glColor3f(1, 0, 0);
                     glTranslatef((static_cast<int>(j)*4)-32+gameX-2, -2, (static_cast<int>(i)*4)+gameZ);
                     glBegin(GL_QUADS);
-                        glTexCoord2i(0, 0); glVertex2i(0, 0);
-                        glTexCoord2i(0, 1); glVertex2i(2, 0);
-                        glTexCoord2i(1, 1); glVertex2i(2, 4);
-                        glTexCoord2i(1, 0); glVertex2i(4, 0);
-                        glEnd();
+                    glTexCoord2i(0, 0); glVertex2i(0, 0);
+                    glTexCoord2i(0, 1); glVertex2i(2, 0);
+                    glTexCoord2i(1, 1); glVertex2i(2, 4);
+                    glTexCoord2i(1, 0); glVertex2i(4, 0);
+                    glEnd();
                     glPopMatrix();
                     
                     break;
@@ -1136,8 +1136,6 @@ void Update(void) {
     
     glPushMatrix();
     glTranslatef(0-gameX-10, 0, 0-gameZ);
-    /*glScalef(scaleX, scaleY, scaleZ);
-     glutSolidCube(size);*/
     
     glBegin(GL_QUADS);
     
@@ -1183,7 +1181,7 @@ void Update(void) {
     
     glEnd();
     glPopMatrix();
-     
+    
     // Body lower
     glPushMatrix();
     glColor3f(256.0/256.0, 256.0/256.0, 256.0/256.0);
@@ -1261,7 +1259,7 @@ void Update(void) {
     glPopMatrix();
     
     
-
+    
     glPushMatrix();
     glColor3f(0.0/256.0, 0.0/256.0, 0.0/256.0);
     
@@ -1307,7 +1305,7 @@ void Update(void) {
         CreateCar(vectorOfCars[i].x,vectorOfCars[i].y,vectorOfCars[i].z, vectorOfCars[i].type, vectorOfCars[i].direction);
     }
     
-    // Flush matrix
+    //    // Flush matrix
     glFlush();
     glutSwapBuffers();
     
@@ -1360,7 +1358,7 @@ int main(int argc, char** argv) {
                 Car car3(-60-distance1-distance2,(static_cast<int>(i)*4)+gameZ, speed, 0,static_cast<int>(i));
                 vectorOfCars.push_back(car3);
             } else {
-            
+                
                 Car car1(60,(static_cast<int>(i)*4)+gameZ, speed, 1,static_cast<int>(i));
                 vectorOfCars.push_back(car1);
                 
@@ -1371,13 +1369,13 @@ int main(int argc, char** argv) {
                 vectorOfCars.push_back(car3);
             }
         }
-            
+        
     }
-    /*float speed = .25 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(.6-.25)));
+    float speed = .25 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(.6-.25)));
     
     Car car1(-60,(static_cast<int>(29)*4)+gameZ, speed, 0, 29);
-    vectorOfCars.push_back(car1);*/
-
+    vectorOfCars.push_back(car1);
+    
     
     
     // Enter GLUT event processing cycle
